@@ -1,4 +1,9 @@
-FROM openjdk:8-jdk-alpine
-EXPOSE 8083
-ADD target/docker-spring-boot.war docker-spring-boot.war
-ENTRYPOINT ["java","-jar","/docker-spring-boot.war"]
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
